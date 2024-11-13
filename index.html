@@ -8,23 +8,22 @@
 </head>
 <body>
 
-<button id="c1">Уфа</button>
-<button id="c2">Москва</button>
-<button id="c3">Ижевск</button>
-<button id="c4">Иркутск</button>
-<button id="c5">Томск</button>
+<button id="c1" onclick="send(1)">Уфа</button>
+<button id="c2" onclick="send(2)">Москва</button>
+<button id="c3" onclick="send(3)">Ижевск</button>
+<button id="c4" onclick="send(4)">Иркутск</button>
+<button id="c5" onclick="send(5)">Томск</button>
 <div id="weather">
    
 <!-- <p>Загрузка данных...</p> -->
 </div>
 
 <script>
-$('#c1').on('click', function() {
-    
-// Отправляем запрос на сервер для получения погоды
-$.ajax({
+    function send (name) {
+        $.ajax({
 url: 'get_weather.php',
 type: 'GET',
+data: {name: name},
 success: function(data) {
    
 var weather = JSON.parse(data);
@@ -38,95 +37,9 @@ error: function() {
 $('#weather').html('<p>Ошибка при получении данных</p>');
 }
 });
-});
-
-$('#c2').on('click', function() {
-    
-    // Отправляем запрос на сервер для получения погоды
-    $.ajax({
-    url: 'get_2.php',
-    type: 'GET',
-    success: function(data) {
-       
-    var weather = JSON.parse(data);
-    
-    var html = "<h1>Текущая погода в Москве</h1>";
-    html += "<p>Температура: " + weather.main.temp + "°C</p>";
-    html += "<p>Описание: " + weather.weather[0].description + "</p>";
-    html += "<p>Влажность: " + weather.main.humidity + "%</p>";
-    $('#weather').html(html);
-    },
-    error: function() {
-    $('#weather').html('<p>Ошибка при получении данных</p>');
     }
-    });
-    });
 
-    $('#c3').on('click', function() {
-    
-    // Отправляем запрос на сервер для получения погоды
-    $.ajax({
-    url: 'get_3.php',
-    type: 'GET',
-    success: function(data) {
-       
-    var weather = JSON.parse(data);
-    
-    var html = "<h1>Текущая погода в Ижевске</h1>";
-    html += "<p>Температура: " + weather.main.temp + "°C</p>";
-    html += "<p>Описание: " + weather.weather[0].description + "</p>";
-    html += "<p>Влажность: " + weather.main.humidity + "%</p>";
-    $('#weather').html(html);
-    },
-    error: function() {
-    $('#weather').html('<p>Ошибка при получении данных</p>');
-    }
-    });
-    });
 
-    $('#c4').on('click', function() {
-    
-    // Отправляем запрос на сервер для получения погоды
-    $.ajax({
-    url: 'get_4.php',
-    type: 'GET',
-    success: function(data) {
-       
-    var weather = JSON.parse(data);
-    
-    var html = "<h1>Текущая погода в Иркутске</h1>";
-    html += "<p>Температура: " + weather.main.temp + "°C</p>";
-    html += "<p>Описание: " + weather.weather[0].description + "</p>";
-    html += "<p>Влажность: " + weather.main.humidity + "%</p>";
-    $('#weather').html(html);
-    },
-    error: function() {
-    $('#weather').html('<p>Ошибка при получении данных</p>');
-    }
-    });
-    });
-
-    $('#c5').on('click', function() {
-    
-    // Отправляем запрос на сервер для получения погоды
-    $.ajax({
-    url: 'get_5.php',
-    type: 'GET',
-    success: function(data) {
-       
-    var weather = JSON.parse(data);
-    
-    var html = "<h1>Текущая погода в Томске</h1>";
-    html += "<p>Температура: " + weather.main.temp + "°C</p>";
-    html += "<p>Описание: " + weather.weather[0].description + "</p>";
-    html += "<p>Влажность: " + weather.main.humidity + "%</p>";
-    $('#weather').html(html);
-    },
-    error: function() {
-    $('#weather').html('<p>Ошибка при получении данных</p>');
-    }
-    });
-    });
 </script>
 </body>
 </html>
